@@ -17,7 +17,7 @@
     <AssemblyName>Chatta</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44398</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -214,7 +214,6 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\chatta-logo2.png" />
     <Content Include="Images\favicon.ico" />
-    <Content Include="Images\IMG_2618.JPG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -442,7 +441,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>42399</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:42399/</IISUrl>
+          <IISUrl>https://localhost:44398/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
