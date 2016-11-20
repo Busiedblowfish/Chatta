@@ -58,14 +58,14 @@ namespace Chatta
             //app.UseFacebookAuthentication(
             //   appId: "",
             //   appSecret: "");
-
-            /*Enable google third party login
+            */
+            //Enable google third party login
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "",
-                ClientSecret = ""
+                ClientId = "test",
+                ClientSecret = "test"
             });
-            */
+            
         }
     }
 }
