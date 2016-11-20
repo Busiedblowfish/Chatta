@@ -46,10 +46,10 @@ namespace Chatta
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            /*Enable microsoft third party login
+                app.UseMicrosoftAccountAuthentication(
+                clientId: "",
+                clientSecret: "");
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
@@ -59,11 +59,13 @@ namespace Chatta
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            /*Enable google third party login
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "",
+                ClientSecret = ""
+            });
+            */
         }
     }
 }
