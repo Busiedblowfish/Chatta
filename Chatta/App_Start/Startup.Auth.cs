@@ -45,12 +45,13 @@ namespace Chatta
             // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
-
-            /*Enable microsoft third party login
+            
+            //Secret credentials configured in azure for live deployment
+            /*Enable microsoft account login 
                 app.UseMicrosoftAccountAuthentication(
-                clientId: "",
-                clientSecret: "");
-
+                clientId: "test",
+                clientSecret: "test");
+            /*
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
@@ -59,11 +60,12 @@ namespace Chatta
             //   appId: "",
             //   appSecret: "");
             */
-            //Enable google third party login
+            //Enable google account login
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "test",
-                ClientSecret = "test"
+                //Bad practice, remove credentials after testing
+                ClientId = "803596359501-rf4dltoibh3fi4crisdiopagmmf20n7v.apps.googleusercontent.com",  
+                ClientSecret = "azfLOJLluhlXyhQoVsC06Kyn"
             });
             
         }
