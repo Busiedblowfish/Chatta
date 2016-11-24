@@ -16,6 +16,8 @@ namespace Chatta
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            // Register the default hub route
+            // RouteTable.Routes.MapHubs("~/Account");
         }
     }
 }

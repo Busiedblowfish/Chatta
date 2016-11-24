@@ -44,10 +44,58 @@ input[type="select"]
         padding: 0px;
     }
 }
+/*Chatta logo display on nav-bar*/
 .chatta-nav
 {
     height:50px;
     width:250px;
     background-color:transparent;
 
+}
+
+/*Chat Hub display and styling*/
+#whole-box
+{
+  width:85%; 
+  height:70%;
+  margin:auto; 
+  margin-top: 40px;
+}
+
+.groupChat-box
+{
+    float:left;
+    width:75%;
+    height:600px;
+    border:groove;
+}
+
+.lower-left
+{
+    margin:auto;
+    position:relative;
+    top:80%;
+    height:20%;
+    border:groove;
+}
+
+.msg-box
+{
+    height: 100%;
+    width:80%;
+    float:left;
+}
+
+.send-box
+{
+    height:100%;
+    width:20%;
+    float:right;
+}
+
+.user-box
+{
+   width:auto;
+   height:600px;
+   border:groove;
 }
