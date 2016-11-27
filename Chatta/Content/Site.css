@@ -60,6 +60,7 @@ input[type="select"]
   width:85%; 
   height:70%;
   margin:auto; 
+  overflow: auto;
 }
 
 .groupChat-box
@@ -68,6 +69,17 @@ input[type="select"]
     width:75%;
     height:600px;
     border:groove;
+    position:relative;
+    clear:both;
+}
+
+.chat-area
+{
+    margin:auto;
+    height:80%;
+    width:100%;
+    border:groove;
+    overflow: auto;
 }
 
 #whole-box-header
@@ -97,11 +109,14 @@ input[type="select"]
 
 .lower-left
 {
-    margin:auto;
+    border-style: groove;
+    border-color: inherit;
+    border-width: medium;
+    margin: auto;
     position:relative;
-    top:80%;
     height:20%;
-    border:groove;
+    top: 0px;
+    left: 0px;
 }
 
 .msg-box
@@ -120,7 +135,17 @@ input[type="select"]
 
 .user-box
 {
-   width:auto;
-   height:600px;
-   border:groove;
+    width:auto;
+    height:600px;
+    border:groove;
+    overflow: auto;
+}
+
+#Textbox1
+{
+  font-family:Candara, Verdana;
+  font-size:larger;
+  resize:none;
+  height:100%;
+  width:100%;
 }

@@ -21,10 +21,22 @@ namespace Chatta.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!isLoggedIn)
+            if (!isLoggedIn)
             {
                 RedirectOnFail();
                 return;
+            }
+            Page.Validate();
+            if(Page.IsValid)
+            {
+                try
+                {
+                }
+
+                catch
+                {
+
+                }
             }
         }
     }

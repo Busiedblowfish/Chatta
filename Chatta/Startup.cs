@@ -1,12 +1,15 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Chatta.Startup))]
+[assembly: OwinStartup(typeof(Chatta.Startup))]
 namespace Chatta
 {
-    public partial class Startup {
-        public void Configuration(IAppBuilder app) {
+    public partial class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }

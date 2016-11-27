@@ -17,7 +17,7 @@ namespace Chatta
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             // Register the default hub route
-            // RouteTable.Routes.MapHubs("~/Account");
+            //RouteTable.Routes.MapHubs();
         }
     }
 }
