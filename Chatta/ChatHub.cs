@@ -86,11 +86,11 @@ namespace Chatta
             {
                 //Id = Context.ConnectionId,                
                 Id = Guid.NewGuid().ToString(),
-                Email = Clients.Caller().email
+                Email = HttpContext.Current.User.Identity.GetUserId()
                 };
                 repository.Add(user);
                 repository.AddMapping(Context.ConnectionId, user.Id);
-                Clients.All.joins(user.Id, Clients.Caller.email, DateTime.Now);
+                Clients.All.joins(user.Id, user.Email, DateTime.Now);
             }
 
             /// <summary>

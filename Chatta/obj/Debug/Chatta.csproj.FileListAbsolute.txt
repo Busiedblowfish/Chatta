@@ -94,4 +94,3 @@ C:\Users\O\Documents\GitHub\Chatta\Chatta\bin\Microsoft.Owin.Security.MicrosoftA
 C:\Users\O\Documents\GitHub\Chatta\Chatta\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\O\Documents\GitHub\Chatta\Chatta\obj\Debug\Chatta.dll
 C:\Users\O\Documents\GitHub\Chatta\Chatta\obj\Debug\Chatta.pdb
-C:\Users\O\Documents\GitHub\Chatta\Chatta\obj\Debug\Chatta.csprojResolveAssemblyReference.cache

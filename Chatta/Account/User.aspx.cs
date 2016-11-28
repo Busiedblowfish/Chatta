@@ -4,40 +4,53 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity.Owin;
 using Owin;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Chatta.Models;
+
 
 namespace Chatta.Account
 {
     public partial class User : System.Web.UI.Page
     {
-        //Redirect User to Login page if they are not logged in
+        /*
+        //Redirect User to Login page if they are not logged in already
         private void RedirectOnFail()
         {
             Response.Redirect((User.Identity.IsAuthenticated) ? "~/Account/User" : "~/Account/Login");
         }
 
-        bool isLoggedIn = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
-
+        bool IsLoggedIn = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+        */
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!isLoggedIn)
+            /*
+            if (!IsLoggedIn)
             {
                 RedirectOnFail();
                 return;
             }
-            Page.Validate();
-            if(Page.IsValid)
+            //Contiue to push Javascripts on webpage
+
+            */
+            /*
+            if (!User.Identity.IsAuthenticated) // if the user is not logged in
             {
-                try
-                {
-                }
-
-                catch
-                {
-
-                }
+                Response.Redirect("~/Account/Login");
             }
+            */
+
+            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+            if (!User.Identity.IsAuthenticated)
+            {
+                if (String.IsNullOrEmpty(returnUrl))
+                {
+                    Response.Redirect("~/Account/Login");
+                }
+                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+            }
+            
         }
     }
 }
