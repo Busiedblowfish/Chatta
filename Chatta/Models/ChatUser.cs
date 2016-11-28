@@ -7,7 +7,9 @@ namespace Chatta.Models
 {
     public class ChatUser
     {
-        public string Id { get; set; }
+        public string Id { get; set; }  //connection ID of an authenticated user
+        public string Email { get; set; }   //Email address associated with the user
+        //public string Username { get; set; }    //Username associated with the user
       
     }
 }

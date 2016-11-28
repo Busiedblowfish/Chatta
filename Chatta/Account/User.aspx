@@ -60,6 +60,9 @@
                                     $('#TextBox1').val('').focus();
                                 });
                             });
+                            connection.start()
+                            .done(function () { console.log('Now connected, connection ID=' + connection.id); })
+                            .fail(function () { console.log('Could not connect'); });
                         });
                     </script>
                 </div>
