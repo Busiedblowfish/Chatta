@@ -14,8 +14,8 @@ namespace Chatta.Models
         //private string currentUser;
         public string Email
         {
-            get; //{ return currentUser; }
-            set; //{ currentUser = HttpContext.Current.User.Identity.GetUserName();}
+            get;    // { return currentUser; }
+            set;    //{ currentUser = HttpContext.Current.User.Identity.GetUserName();}
         }
     }
 }

@@ -8,7 +8,7 @@ using Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Chatta.Models;
-
+using System.Threading;
 
 namespace Chatta.Account
 {
@@ -42,15 +42,19 @@ namespace Chatta.Account
             */
 
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!User.Identity.IsAuthenticated)
+            try
             {
-                if (String.IsNullOrEmpty(returnUrl))
+                if (!User.Identity.IsAuthenticated)
                 {
-                    Response.Redirect("~/Account/Login");
+                    if (String.IsNullOrEmpty(returnUrl))
+                    {
+                        Response.Redirect("~/Account/Login");
+                    }
+                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 }
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
-            
+            catch (ThreadAbortException) { }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
         }
     }
 }

@@ -3,25 +3,25 @@ var chatta = {};
 
 //Use Chatta.Models
 
-chatta.chatMessage = function (sender, message, dateSent)
+chatta.chatMessage = function (sender, message, time)
 {
     var self = this;
     //self.username = sender;  for username implementation
     self.email = sender;
     self.message = message;
-    if (dateSent != null)
+    if (time != null)
     {
-        self.timestamp = dateSent;
+        self.timestamp = time;
     }
 }
 
 //Connected User
-chatta.user = function (email, userId)
+chatta.chatUser = function (authUser, userId) //client refers to authenticated user
 {
     var self = this;
     //self.username = username;
-    self.email = email;
-    self.id = userId;
+    self.email = authUser;
+    self.userId = userId;
 }
 
 // ViewModels
@@ -37,10 +37,10 @@ chatta.connectedUsersViewModel = function ()
     self.contacts = ko.observableArray();
     self.customRemove = function (userToRemove)
     {
-        var userIdToRemove = userToRemove.id;
+        var userIdToRemove = userToRemove.userId;
         self.contacts.remove(function (item)
         {
-            return item.id === userIdToRemove;
+            return item.userId === userIdToRemove;
         });
     }
 }

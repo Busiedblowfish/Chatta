@@ -13,9 +13,9 @@
                 <!-- This will display the list of group chats -->
                 <ul>
                     <li>
-                        <div class="chat-property-email" data-bind="text: email">
+                        <div class="chat-property-email" data-bind="text: currentUser">
                         </div>
-                        <div class="chat-property-message" data-bind="text: message">
+                        <div class="chat-property-message" data-bind="html: message">
                         </div>
                         <div class="chat-property-timestamp" data-bind="text: timestamp.toLocaleTimeString()">
                         </div>
@@ -35,10 +35,10 @@
                 </div>
             </div>
         </div>
-        <!-- This is the list of connected clients-->
+        <!-- This is the list of connected user(authenticated by -->
         <div id="user-box">
             <ul data-bind="foreach: contacts" >
-                <li class="user-list" data-bind="text: email"></li>
+                <li class="user-list" data-bind="text: currentUser"></li>
             </ul>
         </div>
     </div>
@@ -54,17 +54,17 @@
     <script src="/Scripts/Chatta.js"></script>
     <!--Add script to update the page and send messages to connected clients.-->
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(function () {
             //Call the chatviewModel for page rendering
             var chat = new chatta.chatViewModel();
             var users = new chatta.connectedUsersViewModel();
-            var currentUser = new chatta.user.email;
+            var currentUser = new chatta.chatUser('<% =Context.User.Identity.GetUserName()  %>');
 
             // Declare a proxy to reference the hub(ChatHub will be reference using camelCase (chatHub)).
             var chattaHub = $.connection.chatHub;
-            chattaHub.state.email = currentUser.email;
+            chattaHub.state = currentUser;
 
-            //Call clientside event handlers from /ChatHub(userId, message, timestamp)
+            //Call client-side event handlers from /ChatHub(userId, message, timestamp)
             //userId is the connectionID of individual connected client/user
             chattaHub.client.onMessageReceived = function (relay) {
                 var date = new Date().toLocaleTimeString();         //Current local time
@@ -74,15 +74,15 @@
                 objDiv.scrollTop = objDiv.scrollHeight - objDiv.clientHeight;
             }
 
-            //A client has left the hub, remove user from user view
+            //A client has left the hub, remove user from users box
             chattaHub.client.leaves = function (userId, email, timestamp) {
-                var disconnectedUser = new chatta.user(email, userId);
+                var disconnectedUser = new chatta.chatUser(authUser, userId);
                 users.customRemove(disconnectedUser);
             }
 
-            //A new client has joined the hub, add new user to user view
+            //A new client has joined the hub, add new user to  users box
             chattaHub.client.joins = function (userId, email, timestamp) {
-                var connectedUser = new chatta.user(email, userId);
+                var connectedUser = new chatta.chatUser(email, userId);
                 users.contacts.push(connectedUser);
             }
 
@@ -90,14 +90,14 @@
             function sendMessageContent() {
                 var content = $("#Textbox1").val();
                 if (content != "" && content != null) {
-                    var msg = new chatR.chatMessage(currentUser.email, content);
+                    var msg = new chatta.chatMessage(currentUser.authUser, content);
                     // Call the Send method on the hub(server).
                     chattaHub.server.send(msg).done(function () {
                         // Clear text box and reset focus for next comment. 
                         $("#Textbox1").val("").focus();
                     }).fail(function (e) {
                         //Check for errors
-                        alert("Error connection to server");
+                        alert("Error connecting to server");
                     });
                 }
             }
@@ -107,29 +107,32 @@
                 sendMessageContent();
             });
 
+            /*
             // Handles Enter keystroke press event
             $('#Textbox1').keypress(function (e) {
                 if (e.which == 13) {
                     sendMessageContent();
                 }
             });
+            */
 
-            //Apply Knockout JS bindings on the chat area views
+            //Apply Knockout JS bindings on the chat and user box
+            ko.applyBindings(chat, $("#chat-box")[0]);
             ko.applyBindings(users, $("#user-box")[0]);
-            ko.applyBindings(chat, $("#chat-area")[0]);
+
 
             // Step 1: Start the connection
-            // Step 2: Initiate all currenlty connected users
+            // Step 2: Initialize all currently connected users
             // Step 3: Join users to chat hub
             // Step 4: Notify all users of currenlty connected users
             $.connection.hub.start().done(function () {
                 chattaHub.server.getConnectedUsers()
                             .done(function (connectedUsers) {
                                 ko.utils.arrayForEach(connectedUsers, function (item) {
-                                    users.contacts.push(new chatta.user(item.email, item.userId));
+                                    users.contacts.push(new chatta.chatUser(item.Email, item.Id));
                                 });
                             }).done(function () {
-                                chatHub.server.joined();
+                                chattaHub.server.joined();
                             });
             });
 
