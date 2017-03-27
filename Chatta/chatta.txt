@@ -11,22 +11,6 @@ https://logomakr.com/91MzWo
 500x100
 https://logomakr.com/4ilLMf
 http://tools.dynamicdrive.com/favicon/
+https://logomakr.com/9sTzs6
 
 
-
-<script type="text/javascript">
-//Fix max text length to in textbox1 to 160 characters, ignore copy and paste situations
-	function howMany(text)
-	{
-		var maxlength = 160; //set your value here (or add a parm and pass it in)
-		var object = document.getElementById('#Textbox1%');  //get Textbox1 object
-		if (object.value.length > maxlength)
-		{
-			object.focus(); //set focus to prevent jumping
-			object.value = text.value.substring(0, maxlength); //truncate the value
-			object.scrollTop = object.scrollHeight; //scroll to the end to prevent jumping
-			return false;
-		}
-		return true;
-	}
-</script>
